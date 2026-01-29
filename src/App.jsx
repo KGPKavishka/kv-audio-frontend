@@ -1,20 +1,38 @@
-import './App.css'
-import ProductCard from './components/productCard.jsx'
+import "./App.css";
+import { GoGraph } from "react-icons/go";
+import { MdOutlineBookmarkBorder } from "react-icons/md";
+import { LuSpeaker } from "react-icons/lu";
+import { FaRegUser } from "react-icons/fa";
 
 function App() {
-
   return (
-    <div>
-      <ProductCard name="Audio Setup" price="3250/-" 
-      description="High-quality audio setup for professional use."
-      img="https://img.drz.lazcdn.com/static/lk/p/9bc27f3356fa6569f9ca2b8596f0477c.jpg_400x400q75.avif" />
+    <div className="w-full h-screen flex">
+      <div className="w-[400px] h-full bg-green-200">
 
-      <ProductCard name="Wireless Headphones" price="1500/-" 
-      description="Wireless headphones with noise cancellation."
-      img="https://img.drz.lazcdn.com/static/lk/p/6d5a0903d7fd26783ef8f644bf9dffc8.jpg_400x400q75.avif" />
-    </div> 
+        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+          <GoGraph />
+          Dashboard 
+        </button>
+        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+          <MdOutlineBookmarkBorder />
+          Booking 
+        </button>
+        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+          <LuSpeaker />
+          Items 
+        </button>
+        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+          <FaRegUser />
+          Users 
+        </button>
 
-  )
+      </div>
+      <div className="w-full bg-blue-200">
+
+      </div>
+
+    </div>
+  );
 }
 
-export default App
+export default App;
