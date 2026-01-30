@@ -1,9 +1,16 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import AdminPage from "./components/adminpage";
+import AdminPage from "./pages/admin/adminpage";
+import HomePage from "./pages/home/homePage";
 
 function App() {
   return (
-    <AdminPage />
+    <BrowserRouter>
+      <Routes path="/*">
+        <Route path="/admin/*" element={<AdminPage />} />
+        <Route path="/*" element={<HomePage />} /> 
+      </Routes>
+    </BrowserRouter>
   );
 }
 

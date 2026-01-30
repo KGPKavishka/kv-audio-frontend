@@ -2,6 +2,7 @@ import { GoGraph } from "react-icons/go";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { LuSpeaker } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
+import { Link, Route, Routes } from "react-router-dom";
 
 export default function AdminPage() {
     return (
@@ -12,21 +13,27 @@ export default function AdminPage() {
           <GoGraph />
           Dashboard 
         </button>
-        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+        <Link to="/admin/booking" className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
           <MdOutlineBookmarkBorder />
           Booking 
-        </button>
-        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+        </Link>
+        <Link to="/admin/items" className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
           <LuSpeaker />
           Items 
-        </button>
+        </Link>
         <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
           <FaRegUser />
           Users 
         </button>
 
       </div>
-      <div className="w-full bg-blue-200">
+      <div className="w-[calc(100vw-400px)] bg-blue-200">
+        <Routes path="/admin/*">
+
+            <Route path="/booking" element={<h1>Booking Page</h1>} />
+            <Route path="/items" element={<h1>Items Page</h1>} />
+        
+        </Routes>
 
       </div>
 
