@@ -3,11 +3,13 @@ import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { LuSpeaker } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Link, Route, Routes } from "react-router-dom";
+import AdminItemsPage from "./adminItemsPage";
+import AddItemPage from "./addItemPage";
 
 export default function AdminPage() {
     return (
-        <div className="w-full h-screen flex">
-      <div className="w-[400px] h-full bg-green-200">
+      <div className="w-full h-screen flex">
+      <div className="w-[200px] h-full bg-green-200">
 
         <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
           <GoGraph />
@@ -27,11 +29,12 @@ export default function AdminPage() {
         </button>
 
       </div>
-      <div className="w-[calc(100vw-400px)] bg-blue-200">
+      <div className="w-[calc(100vw-200px)]">
         <Routes path="/admin/*">
 
             <Route path="/booking" element={<h1>Booking Page</h1>} />
-            <Route path="/items" element={<h1>Items Page</h1>} />
+            <Route path="/items" element={<AdminItemsPage />} />
+            <Route path="/items/add" element={<AddItemPage />} />
         
         </Routes>
 
