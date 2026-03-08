@@ -2,22 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const sampleArr = [
-  {
-    key: "AUD-001",
-    name: "JBL PartyBox 310",
-    price: 185000,
-    category: "Audio",
-    dimensions: "32cm x 69cm x 36cm",
-    availability: true
-  }
-];
 
 export default function AdminItemsPage() {
-  const [items, setItems] = useState(sampleArr);
+  const [items, setItems] = useState([]);
   const [itemsLoaded, setItemsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     
@@ -105,12 +96,13 @@ export default function AdminItemsPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex justify-center gap-3">
-                    <Link
-                      to={`/admin/items/edit/${product.key}`}
-                      className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100"
-                    >
-                      <FiEdit />
-                    </Link>
+                    <button
+                      onClick={() => {
+                        navigate(`/admin/items/edit`, {state:product})
+                    }} className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
+                       <FiEdit />
+                    </button>
+
                     <button
                       onClick={() => handleDelete(product.key)}
                       className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100"
