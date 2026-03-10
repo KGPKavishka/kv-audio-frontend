@@ -9,12 +9,13 @@ export default function LoginPage(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const navigate = useNavigate();
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     function handleSubmit(e){
         e.preventDefault()
         console.log(email,password);
 
-        axios.post("http://localhost:3000/api/users/login",
+        axios.post(`${backendUrl}/api/users/login`,
             {
             email: email,
             password: password

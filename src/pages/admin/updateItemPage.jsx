@@ -15,6 +15,7 @@ export default function UpdateItemPage() {
     const [productDimensions, setProductDimensions] = useState(location.state.dimensions);
     const [productDescription, setProductDescription] = useState(location.state.description);
     const navigate = useNavigate();
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     async function handleAddItem() {
         console.log(productKey, productName, productPrice, productCategory, productDimensions, productDescription)
@@ -24,7 +25,7 @@ export default function UpdateItemPage() {
         if (token) {
             try {
 
-                const result = await axios.put(`http://localhost:3000/api/products/${productKey}`, {
+                const result = await axios.put(`${backendUrl}/api/products/${productKey}`, {
                     name: productName,
                     price: productPrice,
                     category: productCategory,

@@ -9,12 +9,14 @@ export default function AdminItemsPage() {
   const [items, setItems] = useState([]);
   const [itemsLoaded, setItemsLoaded] = useState(false);
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   useEffect(() => {
     
     if(!itemsLoaded){
       const token = localStorage.getItem("token");
-      axios.get("http://localhost:3000/api/products", {
+      axios.get(`${backendUrl}/api/products`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((res) => {
@@ -34,7 +36,7 @@ export default function AdminItemsPage() {
     setItems(items.filter((item) => item.key !== key));
 
     const token = localStorage.getItem("token");
-    axios.delete(`http://localhost:3000/api/products/${key}`, {
+    axios.delete(`${backendUrl}/api/products/${key}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).then(
       (res) => {
