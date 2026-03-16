@@ -1,19 +1,20 @@
 export default function ProductCard(props) {
   const item = props.item;
 
+  const imageSrc =
+    item.image?.[0]?.startsWith("http")
+      ? item.image[0]
+      : `/images/${item.image?.[0]}`;
+
   return (
     <div className="bg-green-50 shadow-md rounded-xl overflow-hidden hover:shadow-xl transition duration-300 w-72 h-[420px] m-4 flex flex-col">
-
-      {/* Product Image */}
       <img
-        src={`/images/${item.image[0]}`}
+        src={imageSrc}
         alt={item.name}
         className="w-full h-36 object-cover"
       />
 
-      {/* Card Content */}
       <div className="p-4 flex flex-col flex-1 gap-2">
-
         <p className="text-xs text-gray-500 uppercase tracking-wide">
           {item.category}
         </p>
@@ -46,13 +47,11 @@ export default function ProductCard(props) {
           )}
         </div>
 
-        {/* Button always at bottom */}
         <div className="mt-auto pt-3 border-t border-gray-200">
           <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
             View Details
           </button>
         </div>
-
       </div>
     </div>
   );

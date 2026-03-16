@@ -5,7 +5,7 @@ const supabaseUrl = "https://pizuqoxtldfccxmjmbzm.supabase.co";
 
 const supabase = createClient(supabaseUrl, anon_key);
 
-export default function MediaUpload(file) {
+export default function mediaUpload(file) {
 
     return new Promise((resolve, reject) => {
 
@@ -25,7 +25,7 @@ export default function MediaUpload(file) {
         }).catch(() => {
             reject("Error occurred while uploading file");
         })
-        
+
     });
 
 

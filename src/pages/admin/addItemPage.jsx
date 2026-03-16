@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddItemPage() {
 
@@ -11,16 +12,34 @@ export default function AddItemPage() {
     const [productCategory, setProductCategory] = useState("");
     const [productDimensions, setProductDimensions] = useState("");
     const [productDescription, setProductDescription] = useState("");
+    const [productImages, setProductImages] = useState([]);
     const navigate = useNavigate();
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     async function handleAddItem() {
+
+        const promises = [];
+
+        for (let i = 0; i < productImages.length; i++) {
+            console.log(productImages[i])
+            const promise = mediaUpload(productImages[i])
+            promises.push(promise)
+        }
+
+
         console.log(productKey, productName, productPrice, productCategory, productDimensions, productDescription)
 
         const token = localStorage.getItem("token");
 
         if (token) {
             try {
+                // Promise.all(promises).then((result) => {
+                //     console.log(result)
+                // }).catch((err) => {
+                //     toast.error(err)
+                // })
+
+                const imageUrls = await Promise.all(promises);
 
                 const result = await axios.post(`${backendUrl}/api/products`, {
                     key: productKey,
@@ -28,7 +47,8 @@ export default function AddItemPage() {
                     price: productPrice,
                     category: productCategory,
                     dimensions: productDimensions,
-                    description: productDescription
+                    description: productDescription,
+                    image: imageUrls
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -103,6 +123,8 @@ export default function AddItemPage() {
                     onChange={(e) => setProductDescription(e.target.value)}
                     className="border p-2 rounded"
                 />
+
+                <input type="file" multiple onChange={(e) => { setProductImages(e.target.files) }} />
 
                 <button onClick={handleAddItem} className="bg-blue-500 text-white py-2 rounded hover:opacity-90">
                     Add Item
