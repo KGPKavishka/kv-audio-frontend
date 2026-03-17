@@ -124,7 +124,13 @@ export default function AddItemPage() {
                     className="border p-2 rounded"
                 />
 
-                <input type="file" multiple onChange={(e) => { setProductImages(e.target.files) }} />
+                <input
+                    type="file"
+                    multiple onChange={(e) => {
+                        setProductImages(e.target.files)
+                    }}
+                    className="w-full p-2 border rounded"
+                />
 
                 <button onClick={handleAddItem} className="bg-blue-500 text-white py-2 rounded hover:opacity-90">
                     Add Item
