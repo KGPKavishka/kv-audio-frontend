@@ -6,6 +6,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import AdminItemsPage from "./adminItemsPage";
 import AddItemPage from "./addItemPage";
 import UpdateItemPage from "./updateItemPage";
+import AdminUsersPage from "./adminUsersPage";
 
 export default function AdminPage() {
     return (
@@ -24,16 +25,17 @@ export default function AdminPage() {
           <LuSpeaker />
           Items 
         </Link>
-        <button className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
+        <Link to="/admin/users" className="w-full h-[40px] text-[25px] font-bold bg-red-300 flex justify-center items-center">
           <FaRegUser />
           Users 
-        </button>
+        </Link>
 
       </div>
       <div className="w-[calc(100vw-200px)]">
         <Routes path="/admin/*">
 
             <Route path="/booking" element={<h1>Booking Page</h1>} />
+            <Route path="/users" element={<AdminUsersPage />} />
             <Route path="/items" element={<AdminItemsPage />} />
             <Route path="/items/add" element={<AddItemPage />} />
             <Route path="/items/edit" element={<UpdateItemPage />} />
